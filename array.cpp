@@ -7,7 +7,7 @@ using namespace std;
 
 void FirstExo(){
     cout<<"First Exo\n";
-    int rows = 3 , columns=3;
+    int rows = 4 , columns=5;
     // an array with 4 rows and 5 columns.
     int x[rows][columns] = {};
     // int x[3][2] = {{0,1}, {2,3}, {4,5}};
@@ -17,23 +17,23 @@ void FirstExo(){
     // output each array element's value + findRow Max
     for (int i = 0; i < rows; i++)
     {
-        int Sum=0;
+        int SumR=0;
         for (int j = 0; j < columns; j++)
         {
             cout << "Element at x[" << i
                  << "][" << j << "]: ";
             // Another way to insert a new line, is with the endl manipulator: == \n\n 
             cin >> x[i][j];
-            Sum+= x[i][j];
+            SumR+= x[i][j];
             cout << x[i][j]<<endl;
         }
-        if(Sum>RowSum){
-            RowSum=Sum;
+        if(SumR>RowSum){
+            RowSum=SumR;
             maxRowSumIndex=i;
-            Sum =0;
+            SumR =0;
         }
         else{
-            Sum =0;
+            SumR =0;
         }
     }
     // Find the maximum on Columns
@@ -57,6 +57,33 @@ void FirstExo(){
     cout << "Column Sum " << ColmnSum << " its index = " << maxColmnSumIndex;
 }
 
+void SecondExo(){
+    cout<<"Second Exo\n";
+    int rows = 10 , columns=15;
+    int x[rows][columns] = {
+        { 0,  0,  0,  0,  0,  0,  0,  0,  0,  9,  9,  9,  9,  9,  9,  9},
+        { 0,  0,  13, 0,  0,  0,  0,  0,  0,  0,  9,  0,  0,  0,  9,  0},
+        { 0,  13, 0,  13, 0,  0,  0,  0,  0,  0,  0,  9,  0,  9,  0,  0},
+        { 13, 13, 13, 13, 13, 13, 13, 13, 13, 0,  0,  0,  9,  0,  0,  0},
+        { 0,  13, 0,  0,  0,  0,  0,  13, 0,  0,  0,  9,  0,  9,  0,  0},
+        { 0,  0,  13, 0,  0,  0,  13, 17, 0,  0,  9,  9,  9,  9,  9,  0},
+        { 0,  0,  0,  13, 0,  13, 17, 0,  17, 9,  9,  9,  9,  9,  9,  9},
+        { 0,  0,  0,  0,  13, 17, 0,  0,  0,  17, 0,  0,  0,  0,  0,  0},
+        { 0,  0,  0,  0,  17, 0,  0,  0,  0,  0,  17, 0,  0,  0,  0,  0},
+        { 0,  0,  0,  17, 17, 17, 17, 17, 17, 17, 17, 17,  0,  0,  0,  0},
+        { 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
+
+    };
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << "Element at x[" << i
+           << "][" << j << "]: ";
+            cin >> x[i][j];
+        }
+    }
+}
 int main()
 {
     FirstExo();
