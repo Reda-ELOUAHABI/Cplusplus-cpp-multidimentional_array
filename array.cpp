@@ -5,9 +5,8 @@
 
 using namespace std;
 
-int main()
-{
-    cout<<"First Exo";
+void FirstExo(){
+    cout<<"First Exo\n";
     int rows = 3 , columns=3;
     // an array with 4 rows and 5 columns.
     int x[rows][columns] = {};
@@ -15,8 +14,7 @@ int main()
     // since all elements are positive
     int maxRowSumIndex=0,maxColmnSumIndex=0;
     int RowSum=0,ColmnSum=0;
- 
-    // output each array element's value + findRow Max 
+    // output each array element's value + findRow Max
     for (int i = 0; i < rows; i++)
     {
         int Sum=0;
@@ -55,9 +53,12 @@ int main()
             SumC =0;
         }
     }
-
     cout << "Row Sum " << RowSum << " its index = " << maxRowSumIndex;
     cout << "Column Sum " << ColmnSum << " its index = " << maxColmnSumIndex;
+}
 
+int main()
+{
+    FirstExo();
     return 0;
 }
