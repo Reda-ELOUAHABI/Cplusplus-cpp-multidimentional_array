@@ -83,78 +83,57 @@ void SecondExo()
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 
     };
-    for (int i = 0; i < rows; i++)
+    // Custom Print
+    //  for(int i=0;i<=rows;i++)
+    // {
+    //     for(int j=0;j<=columns;j++)
+    //     {
+    //         cout<<x[i][j]<<"\t";
+    //     }
+    //     cout<<endl;
+    // }
+    for (int i = 0; i <= rows; i++)
     {
-        // cout << "Second Eaaxo\n"
-        //  << i;
-        for (int j = 0; j < columns; j++)
+        for (int j = 0; j <= columns; j++)
         {
-            // cout << "Second Eddxo\n";
-            // cout << "Element at x[" << i << "][" << j << "]: " << x[i][j] << "\n";
-            //    serach Diag
             int dept = 0;
-            // bool WeAreInTriangle = false;
             while (dept < 11 && x[i][j] != 0)
             {
                 ++dept;
-                // cout << "while has diag \n";
                 if (j - dept >= 0 && j + dept <= columns)
                 {
                     if (i + dept <= rows)
                     {
-                        if (x[i][j] == x[i + dept][j - dept] && x[i][j] == x[i + dept][j + dept])
+                        if ((x[i][j] == x[i + dept][j - dept] || x[i][j] == x[i + dept][j + dept] && dept > 0) && (x[i][j] == x[i + dept][j - dept] || x[i][j] == x[i + dept][j + dept] && dept == 0))
                         {
-                            cout << "[" << i << " : " << j << " ] \t DIAG :" << x[i][j] << " = " << x[i + dept][j - dept] << " && " << x[i][j] << " = " << x[i + dept][j + dept] << endl;
-                            bool isTRG = false;
-                            for (int p = j - dept; p < 2 * dept + 1; p++)
+                            // cout << "[" << i << " : " << j << " ] \t DIAG de x[i][j] :" << x[i][j] << " = G: " << x[i + dept][j - dept] << " && D:  " << x[i][j] << " = " << x[i + dept][j + dept] << " Dept = " << dept << endl;
+                            if (dept >= 2)
                             {
-                                if (x[i + dept][p] == x[i][j] && dept >= 2)
+                                // cout << " dept BIGGER than 2 and it == " << dept << endl;
+                                bool isTRG = false;
+                                for (int p = j - dept + 1; p < j - dept + 3; p++)
                                 {
-                                    isTRG = true;
+                                    cout << "Elements of base = " << x[i][p] << " i = "<< i << " p = "<< p << " j = "<< j << " dept = "<< dept << " x[i][j] "<<x[i][j]<< endl;
+                                    // cout << p << i << x[i][j] << endl;
+                                    // if (x[i][p] == x[i][j])
+                                    // {
+                                    //     isTRG = true;
+                                    // }
+                                    // else
+                                    // {
+                                    //     isTRG = false;
+                                    //     break;
+                                    // }
                                 }
-                                else
+                                if (isTRG)
                                 {
-                                    isTRG = false;
+                                    cout << "-----the top of Triangle the has the same bas " << x[i][j] << " i " << i << " j " << j << "\n";
                                     break;
                                 }
-                            }
-                            if (isTRG)
-                            {
-                                cout << "-----the top of Triangle the has the same bas " << x[i][j] << " i " << i << " j " << j << "\n";
-                                break;
                             }
 
                             dept++;
-                            // WeAreInTriangle = true;
-                            // continue;
                         }
-                        /*we removed else if , instead we used if only
-                        if (x[i][j] != x[i + dept][j - dept] && x[i][j] != x[i + dept][j + dept] && dept >= 2 && WeAreInTriangle)
-                        {
-                            // has the same Base ?
-                            // cout << "LET SEE IF IT's Base \n";
-                            int hasTheSameBase = 1;
-                            for (int l = j - dept - 1; l < j + dept; l++)
-                            {
-                                cout << x[i][j] << " = " << x[i + dept - 1][l] << " ANDDD NEXT " << x[i + dept - 1][l + 1] << "\t" << i + dept - 1 << l << "\n";
-                                if (x[i][j] == x[i + dept - 1][l])
-                                {
-                                    cout << x[i][j] << " = " << x[i + dept - 1][l] << " AND NEXT " << x[i + dept - 1][l + 1] << "\n";
-                                    continue;
-                                }
-                                else
-                                {
-                                    hasTheSameBase = 0;
-                                    break;
-                                }
-                            }
-                            if (hasTheSameBase == 1)
-                            {
-                                cout << "-----the top of Triangle the has the same bas " << x[i][j] << " i " << i << " j " << j << "\n";
-                                break;
-                            }
-                        }
-                    */
                     }
                     else
                     {
@@ -166,41 +145,80 @@ void SecondExo()
                     break;
                 }
             }
-
-            // if(j-1>0 && j+1<columns){
-            //     if(i+1<rows){
-            //         if(x[i][j] == x[i+1][j-1] && x[i][j] == x[i+1][j+1]){
-            //             cout << "On est sur le diag";
-            //              if(j-2>0 && j+2<columns){
-            //                   if(i+2<rows){
-            //                     if(x[i][j] == x[i+2][j-2] && x[i][j] == x[i+2][j+2]){
-
-            //                     }
-            //                   }
-            //              }
-            //         }
-            //     }
-            // }
-            // if(j-1>0 && j+1<columns){
-            //     if(i+1<rows){
-            //         if(x[i][j] == x[i+1][j-1] && x[i][j] == x[i+1][j+1]){
-            //             cout << "On est sur le diag"
-            //              if(j-2>0 && j+2<columns){
-            //                   if(i+2<rows){
-            //                     if(x[i][j] == x[i+2][j-2] && x[i][j] == x[i+2][j+2]){
-            //  cout << "On est sur le diag Level 2";
-            //                     }
-            //                   }
-            //              }
-            //         }
-            //     }
-            // }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void SecondTest()
+{
+    cout << "Second Exo\n";
+    int rows = 5, columns = 5;
+    int x[rows][columns] = {
+        {1,2,3,4,5},
+        {6,7,8,9,10},
+        {11,12,13,14,15},
+        {16,17,18,19,20},
+        {21,22,23,24,25}
+    };
+
+     // Custom Print
+     for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<columns;j++)
+        {
+            cout<<x[i][j]<<"\t";
+        }
+        cout<<endl;
+    }
+    for (int i = 0; i <= rows; i++)
+    {
+        for (int j = 0; j <= columns; j++)
+        {
+            cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
+        }
+    }
+}
+
 int main()
 {
     // FirstExo();
-    SecondExo();
+    SecondTest();
     return 0;
 }
+
