@@ -86,44 +86,60 @@ void SecondExo()
     for (int i = 0; i < rows; i++)
     {
         // cout << "Second Eaaxo\n"
-            //  << i;
+        //  << i;
         for (int j = 0; j < columns; j++)
         {
             // cout << "Second Eddxo\n";
-            cout << "Element at x[" << i
-                 << "][" << j << "]: " << x[i][j];
+            // cout << "Element at x[" << i << "][" << j << "]: " << x[i][j] << "\n";
             //    serach Diag
-            bool hasDiag = true;
-            int dept = 1;
-            while (hasDiag)
+            int dept = 0;
+            // bool WeAreInTriangle = false;
+            while (dept < 11 && x[i][j] != 0)
             {
-                cout << "while has diag \n";
-                hasDiag = false;
+                ++dept;
+                // cout << "while has diag \n";
                 if (j - dept >= 0 && j + dept <= columns)
                 {
                     if (i + dept <= rows)
                     {
-
                         if (x[i][j] == x[i + dept][j - dept] && x[i][j] == x[i + dept][j + dept])
                         {
+                            cout << "[" << i << " : " << j << " ] \t DIAG :" << x[i][j] << " = " << x[i + dept][j - dept] << " && " << x[i][j] << " = " << x[i + dept][j + dept] << endl;
+                            bool isTRG = false;
+                            for (int p = j - dept; p < 2 * dept + 1; p++)
+                            {
+                                if (x[i + dept][p] == x[i][j] && dept >= 2)
+                                {
+                                    isTRG = true;
+                                }
+                                else
+                                {
+                                    isTRG = false;
+                                    break;
+                                }
+                            }
+                            if (isTRG)
+                            {
+                                cout << "-----the top of Triangle the has the same bas " << x[i][j] << " i " << i << " j " << j << "\n";
+                                break;
+                            }
+
                             dept++;
-                            cout << "IL YA DIAG \n";
+                            // WeAreInTriangle = true;
                             // continue;
                         }
-                        // else if (x[i][j] != x[i + dept][j - dept] && x[i][j] != x[i + dept][j + dept]) //else
-                         /*we removed else if , instead we used if only*/if (dept > 2)
+                        /*we removed else if , instead we used if only
+                        if (x[i][j] != x[i + dept][j - dept] && x[i][j] != x[i + dept][j + dept] && dept >= 2 && WeAreInTriangle)
                         {
-                            //On a vraiment un dept de traingle
-                            //        if(j-dept>=0 && j+dept<=columns){
-                            //   if(i+dept<=rows){
-                            //   }}
                             // has the same Base ?
-                            cout << "LET SEE IF IT's Base \n";
+                            // cout << "LET SEE IF IT's Base \n";
                             int hasTheSameBase = 1;
                             for (int l = j - dept - 1; l < j + dept; l++)
                             {
+                                cout << x[i][j] << " = " << x[i + dept - 1][l] << " ANDDD NEXT " << x[i + dept - 1][l + 1] << "\t" << i + dept - 1 << l << "\n";
                                 if (x[i][j] == x[i + dept - 1][l])
                                 {
+                                    cout << x[i][j] << " = " << x[i + dept - 1][l] << " AND NEXT " << x[i + dept - 1][l + 1] << "\n";
                                     continue;
                                 }
                                 else
@@ -134,19 +150,20 @@ void SecondExo()
                             }
                             if (hasTheSameBase == 1)
                             {
-                                cout << "the top of Triangle the has the same bas " << x[i][j] << " i " << i << " j " << j;
-                                hasDiag = false;
+                                cout << "-----the top of Triangle the has the same bas " << x[i][j] << " i " << i << " j " << j << "\n";
+                                break;
                             }
                         }
+                    */
                     }
                     else
                     {
-                        hasDiag = false;
+                        break;
                     }
                 }
                 else
                 {
-                    hasDiag = false;
+                    break;
                 }
             }
 
