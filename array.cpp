@@ -11,7 +11,8 @@ void FirstExo()
     int rows = 4, columns = 5;
     // an array with 4 rows and 5 columns.
     int x[rows][columns] = {};
-    // int x[3][2] = {{0,1}, {2,3}, {4,5}};
+    // static approach
+    // int x[4][5] = {{0,1,2,3,4}, {1,2,3,4,5}, {2,3,4,5,6}, {2,3,4,5,6}};
     // since all elements are positive
     int maxRowSumIndex = 0, maxColmnSumIndex = 0;
     int RowSum = 0, ColmnSum = 0;
@@ -23,7 +24,7 @@ void FirstExo()
         {
             cout << "Element at x[" << i
                  << "][" << j << "]: ";
-            // Another way to insert a new line, is with the endl manipulator: == \n\n
+            //  dynamic approach
             cin >> x[i][j];
             SumR += x[i][j];
             cout << x[i][j] << endl;
@@ -65,7 +66,7 @@ void FirstExo()
 // reda@ELOUAHABI:/mnt/c/Users/Reda El Ouahabi/Desktop/mvn_proj/cplus$ g++ array.cpp -o array
 // reda@ELOUAHABI:/mnt/c/Users/Reda El Ouahabi/Desktop/mvn_proj/cplus$ ./array
 
-void SecondExo()
+void Tests()
 {
     cout << "Second Exo\n";
     int rows = 10, columns = 15;
@@ -151,43 +152,10 @@ void SecondExo()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void SecondTest()
+void SecondExo()
 {
     cout << "Second Exo\n";
+    // they want 10 rows 15 colums
     int rows = 10, columns = 5;
     int x[rows][columns] = {
         {1,2,3,4,5},
@@ -195,24 +163,36 @@ void SecondTest()
         {11,12,13,14,15},
         {16,13,18,13,20},
         {13,13,13,13,13},
-            {1,2,3,4,5},
-        {6,7,8,9,10},
-        {11,12,13,14,15},
+        {1,2,3,4,5},
+        {18,18,18,18,18},
+        {11,18,13,18,15},
         {16,13,18,13,20},
         {13,13,13,13,13}
     };
-
-     // Custom Print
+    int invertedX[rows][columns] ={};
+     // Fill In invertesX and print X
     for(int i=0;i<rows;i++)
     {
         for(int j=0;j<columns;j++)
         {
-            cout << "[" << i << "][" << j << "]="<<x[i][j]<<"\t";
-            // cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
+            cout << "X[" << i << "][" << j << "]="<<x[i][j]<<"\t";
+            invertedX[rows-i-1][j]=x[i][j];
         }
         cout<<endl;
     }
+    // // Print the inverted
+    // for(int i=0;i<rows;i++)
+    // {
+    //     for(int j=0;j<columns;j++)
+    //     {
+    //         // cout << "X[" << i << "][" << j << "]="<<x[i][j]<<"\t";
+    //         cout << "invertedX[" << i << "][" << j << "]="<<invertedX[i][j]<<"\t";
+    //         // cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
+    //     }
+    //     cout<<endl;
+    // }
 
+// serach traingle on x
      for(int i=0;i<rows;i++)
     {
         for(int j=0;j<columns;j++)
@@ -223,10 +203,10 @@ void SecondTest()
             while(dept<rows){
                 // we are not at extremities
                 if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows){
-                    // see if element in diag has the same value                  
+                    // see if element in diag has the same value
                     if (x[i][j]== x[i+dept][j-dept] ||  x[i][j] == x[i + dept][j + dept])
                         {
-                            cout << "[" << i << " : " << j << " ] :" << x[i][j] << " = G: " << x[i + dept][j - dept] << " && D:  " << x[i + dept][j + dept] << " Dept = " << dept << endl;
+                            // cout << "[" << i << " : " << j << " ] :" << x[i][j] << " = G: " << x[i + dept][j - dept] << " && D:  " << x[i + dept][j + dept] << " Dept = " << dept << endl;
                             if (dept >= 2){
                                 bool sameBase = false;
                                 // the rol how node od triangle disperse [dept=0,disp=0], [1,3],[2,5] ..
@@ -243,7 +223,7 @@ void SecondTest()
                                 }
                                 if (sameBase)
                                 {
-                                    cout << "-----the top =" << x[i][j] << " i " << i << " j " << j <<" dept = " << dept+1<<"\n";
+                                    cout << "-- standing ---the top =" << x[i][j] << " i " << i << " j " << j <<" dept = " << dept+1<<"\n";
                                     break;
                                 }
                             }
@@ -256,12 +236,57 @@ void SecondTest()
         }
         // cout<<endl;
     }
+
+// serach traingle on invertedX [same logic as x]
+     for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<columns;j++)
+        {
+            int dept=1;
+            while(dept<rows){
+                // we are not at extremities
+                if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows){
+                    // see if element in diag has the same value
+                    if (x[i][j]== invertedX[i+dept][j-dept] ||  invertedX[i][j] == invertedX[i + dept][j + dept])
+                        {
+                            // cout << "[" << i << " : " << j << " ] :" << invertedX[i][j] << " = G: " << invertedX[i + dept][j - dept] << " && D:  " << invertedX[i + dept][j + dept] << " Dept = " << dept << endl;
+                            if (dept >= 2){
+                                bool sameBase = false;
+                                // the rol how node od triangle disperse [dept=0,disp=0], [1,3],[2,5] ..
+                                // so we calsulate the distance = j+dept - (j-dept) +1
+                                for (int p = 0; p < (2 *dept)+ 1; p++)
+                                {
+                                    // cout << invertedX[i+dept][j-dept] << endl;
+                                    if(invertedX[i][j] ==  invertedX[i+dept][j-dept]){
+                                        sameBase=true;
+                                    }
+                                    else{
+                                        sameBase=false;
+                                    }
+                                }
+                                if (sameBase)
+                                {
+                                    cout << "-- inverted ---the top =" << invertedX[i][j] << " i " << rows-i-1 << " j " << j <<" dept = " << dept+1<<"\n";
+                                    break;
+                                }
+                            }
+                        }
+                        else{ break;}
+                }
+                else{ break;}
+                ++dept;
+            }
+        }
+        // cout<<endl;
+    }
+
 }
 
 int main()
 {
-    // FirstExo();
-    SecondTest();
+    FirstExo();
+    cout << "\n\n";
+    SecondExo();
     return 0;
 }
 
