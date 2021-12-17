@@ -104,7 +104,7 @@ void SecondExo()
                 {
                     if (i + dept <= rows)
                     {
-                        if ((x[i][j] == x[i + dept][j - dept] || x[i][j] == x[i + dept][j + dept] && dept > 0) && (x[i][j] == x[i + dept][j - dept] || x[i][j] == x[i + dept][j + dept] && dept == 0))
+                        if ((x[i][j] == x[i + dept][j - dept] || x[i][j] == x[i + dept][j + dept] && dept > 0) && (x[i][j] == x[i + dept][j - dept] || x[i][j] == x[i + dept][j + dept] && dept == 0)) //faute , dept start already with 1 : ++dept
                         {
                             // cout << "[" << i << " : " << j << " ] \t DIAG de x[i][j] :" << x[i][j] << " = G: " << x[i + dept][j - dept] << " && D:  " << x[i][j] << " = " << x[i + dept][j + dept] << " Dept = " << dept << endl;
                             if (dept >= 2)
@@ -188,30 +188,73 @@ void SecondExo()
 void SecondTest()
 {
     cout << "Second Exo\n";
-    int rows = 5, columns = 5;
+    int rows = 10, columns = 5;
     int x[rows][columns] = {
         {1,2,3,4,5},
         {6,7,8,9,10},
         {11,12,13,14,15},
-        {16,17,18,19,20},
-        {21,22,23,24,25}
+        {16,13,18,13,20},
+        {13,13,13,13,13},
+            {1,2,3,4,5},
+        {6,7,8,9,10},
+        {11,12,13,14,15},
+        {16,13,18,13,20},
+        {13,13,13,13,13}
     };
 
      // Custom Print
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<columns;j++)
+        {
+            cout << "[" << i << "][" << j << "]="<<x[i][j]<<"\t";
+            // cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
+        }
+        cout<<endl;
+    }
+
      for(int i=0;i<rows;i++)
     {
         for(int j=0;j<columns;j++)
         {
-            cout<<x[i][j]<<"\t";
+            // cout<<x[i][j]<<"\t";
+            // cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
+            int dept=1;
+            while(dept<rows){
+                // we are not at extremities
+                if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows){
+                    // see if element in diag has the same value                  
+                    if (x[i][j]== x[i+dept][j-dept] ||  x[i][j] == x[i + dept][j + dept])
+                        {
+                            cout << "[" << i << " : " << j << " ] :" << x[i][j] << " = G: " << x[i + dept][j - dept] << " && D:  " << x[i + dept][j + dept] << " Dept = " << dept << endl;
+                            if (dept >= 2){
+                                bool sameBase = false;
+                                // the rol how node od triangle disperse [dept=0,disp=0], [1,3],[2,5] ..
+                                // so we calsulate the distance = j+dept - (j-dept) +1
+                                for (int p = 0; p < (2 *dept)+ 1; p++)
+                                {
+                                    // cout << x[i+dept][j-dept] << endl;
+                                    if(x[i][j] ==  x[i+dept][j-dept]){
+                                        sameBase=true;
+                                    }
+                                    else{
+                                        sameBase=false;
+                                    }
+                                }
+                                if (sameBase)
+                                {
+                                    cout << "-----the top =" << x[i][j] << " i " << i << " j " << j <<" dept = " << dept+1<<"\n";
+                                    break;
+                                }
+                            }
+                        }
+                        else{ break;}
+                }
+                else{ break;}
+                ++dept;
+            }
         }
-        cout<<endl;
-    }
-    for (int i = 0; i <= rows; i++)
-    {
-        for (int j = 0; j <= columns; j++)
-        {
-            cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
-        }
+        // cout<<endl;
     }
 }
 
