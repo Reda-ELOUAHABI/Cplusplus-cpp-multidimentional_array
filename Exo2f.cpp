@@ -10,7 +10,25 @@ using namespace std;
 void SecondExoDynamic()
 {
     // 10 rows 15 colums
-    int rows = 11, columns = 16;
+    int rows = 10, columns = 15;
+
+    /*
+0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0,
+9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 13, 0, 13, 0, 0,
+0, 9, 0, 9, 0, 13, 13, 13, 13, 13, 13, 13, 13, 13, 0,
+9, 0, 9, 0, 9, 0, 13, 0, 0, 0, 0, 0, 13, 0, 1,
+0, 9, 0,  9,  0,   0, 17, 13, 0, 0, 0, 13, 0, 0, 1,
+9, 9, 9,  9,  9,  17, 0, 17, 13, 0, 13, 0, 0, 0, 2,
+0, 0, 0,  0,  17, 3, 0, 0, 17, 13, 0, 0, 5, 0, 1,
+2, 0, 0,  17, 0,  0, 0, 0, 0, 17, 0, 3, 1, 0, 1,
+0, 0, 17, 17, 17, 17, 17, 17, 17, 17, 17, 0, 0, 0, 1,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+
+
+
+
+
+    */
     //     int x[rows][columns] = {
     //     {1,2,3,4,5,    1,2,3,4,5,     1,2,3,4,5},
     //     {6,7,8,9,10,    1,2,3,4,5,     1,2,3,4,5},
@@ -23,25 +41,38 @@ void SecondExoDynamic()
     //     {16,13,18,13,20,    1,2,3,4,5,     1,2,3,4,5},
     //     {13,13,13,13,13,    1,2,3,4,5,     1,2,3,4,5}
     // };
-    int x[rows][columns] = {};
+
+
+    int x[rows][columns] = {{0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0},
+{9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 13, 0, 13, 0, 0},
+{0, 9, 0, 9, 0, 13, 13, 13, 13, 13, 13, 13, 13, 13, 0},
+{9, 0, 9, 0, 9, 0, 13, 0, 0, 0, 0, 0, 13, 0, 1},
+{0, 9, 0,  9,  0,   0, 17, 13, 0, 0, 0, 13, 0, 0, 1},
+{9, 9, 9,  9,  9,  17, 0, 17, 13, 0, 13, 0, 0, 0, 2},
+{0, 0, 0,  0,  17, 3, 0, 0, 17, 13, 0, 0, 5, 0, 1},
+{2, 0, 0,  17, 0,  0, 0, 0, 0, 17, 0, 3, 1, 0, 1},
+{0, 0, 17, 17, 17, 17, 17, 17, 17, 17, 17, 0, 0, 0, 1},
+{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}};
+    // int x[rows][columns] = {};
     int invertedX[rows][columns] ={};
     // Scan user input array elements
-    for(int i=0;i<rows;i++)
-    {
-        for(int j=0;j<columns;j++)
-        {
-            //  dynamic approach
-            cout << "Enter x[" << i << "][" << j << "] = ";
-            cin >> x[i][j];
-        }
-        cout<<endl;
-    }
+    // for(int i=0;i<rows;i++)
+    // {
+    //     for(int j=0;j<columns;j++)
+    //     {
+    //         //  dynamic approach
+    //         cout << "Enter x[" << i << "][" << j << "] = ";
+    //         cin >> x[i][j];
+    //     }
+    //     cout<<endl;
+    // }
 
      // Fill In invertesX and print X
     for(int i=0;i<rows;i++)
     {
         for(int j=0;j<columns;j++)
         {
+            cout <<x[i][j] << "[" << i << ":" << j << "]"<<"\t";
             // cout << "X[" << i << "][" << j << "]="<<x[i][j]<<"\t";
             invertedX[rows-i-1][j]=x[i][j];
         }
@@ -71,7 +102,7 @@ void SecondExoDynamic()
             int dept=1;
             while(dept<rows){
                 // we are not at extremities
-                if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows){
+                if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows && x[i][j]!=0){
                     // see if element in diag has the same value
                     if (x[i][j]== x[i+dept][j-dept] ||  x[i][j] == x[i + dept][j + dept])
                         {
@@ -120,9 +151,9 @@ void SecondExoDynamic()
             int dept=1;
             while(dept<rows){
                 // we are not at extremities
-                if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows){
+                if ((j - dept >= 0 && j + dept <= columns) && i + dept <= rows && invertedX[i][j] !=0){
                     // see if element in diag has the same value
-                    if (x[i][j]== invertedX[i+dept][j-dept] ||  invertedX[i][j] == invertedX[i + dept][j + dept])
+                    if (invertedX[i][j]== invertedX[i+dept][j-dept] ||  invertedX[i][j] == invertedX[i + dept][j + dept])
                         {
                             // cout << "[" << i << " : " << j << " ] :" << invertedX[i][j] << " = G: " << invertedX[i + dept][j - dept] << " && D:  " << invertedX[i + dept][j + dept] << " Dept = " << dept << endl;
                             if (dept >= 2){

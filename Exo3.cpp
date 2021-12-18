@@ -35,10 +35,20 @@ void Exo3Dynamic()
     {
         for(int j=0;j<columns;j++)
         {
-            //  dynamic approach
-            cout << "Enter x[" << i << "][" << j << "] = ";
+            cout << i << " * " << j << " = ";
             cin >> x[i][j];
         }
+        cout<<endl;
+    }
+    // Scan user input into set_of_rules
+    for(int i=0;i<N;i++)
+    {
+        /*
+        zero will indicate that he is looking for EVEN_PT, 1 will indicate that he is looking for POSITIVE_PT, 2 will indicate that he is looking for DIVIDE_BY_3_MPT.
+        Example of input to be fed into a set of rules (if we set N to be 6): 0 1 0 1 2
+        */
+            cout <<"  set_of_rules[ " << i << "] = ";
+            cin >> set_of_rules[i];
         cout<<endl;
     }
 
