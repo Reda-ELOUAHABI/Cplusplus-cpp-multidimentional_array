@@ -1,11 +1,8 @@
-// commands for compile and run
-// $ g++ file.cpp -o file
-// $ ./file
-
+//include section
 #include <iostream>
-
+//using section
 using namespace std;
-
+//main section
 int main()
 {
  // 10 rows 15 colums
@@ -29,7 +26,7 @@ int main()
         for(int j=0;j<columns;j++)
         {
             //  dynamic approach
-            cout << "Enter x[" << i << "][" << j << "] : ";
+            cout << "x[" << i << "][" << j << "] : ";
             cin >> x[i][j];
         }
         cout<<endl;
@@ -40,23 +37,10 @@ int main()
     {
         for(int j=0;j<columns;j++)
         {
-            // cout <<x[i][j] << "[" << i << ":" << j << "]"<<"\t";
-            // cout << "X[" << i << "][" << j << "]="<<x[i][j]<<"\t";
             invertedX[rows-i-1][j]=x[i][j];
         }
     }
-    // // Print the inverted
-    // for(int i=0;i<rows;i++)
-    // {
-    //     for(int j=0;j<columns;j++)
-    //     {
-    //         // cout << "X[" << i << "][" << j << "]="<<x[i][j]<<"\t";
-    //         cout << "invertedX[" << i << "][" << j << "]="<<invertedX[i][j]<<"\t";
-    //         // cout << "x[" << i << "][" << j << "]: "<<x[i][j] <<endl;
-    //     }
-    //     cout<<endl;
-    // }
-    // A : count triangle that has max dept
+    // A : count triangles that has max dept
     // B : mAx Dept
     int A=0,B=0;
     // serach traingle on x
@@ -108,9 +92,8 @@ int main()
                 ++dept;
             }
         }
-        // cout<<endl;
     }
-     // serach traingle on invertedX [same logic as x]
+     // serach traingle on invertedX [same logic as normal array 'x']
     for(int i=0;i<rows;i++)
     {
         for(int j=0;j<columns;j++)
@@ -122,14 +105,12 @@ int main()
                     // see if element in diag has the same value
                     if (invertedX[i][j]== invertedX[i+dept][j-dept] ||  invertedX[i][j] == invertedX[i + dept][j + dept])
                         {
-                            // cout << "[" << i << " : " << j << " ] :" << invertedX[i][j] << " = G: " << invertedX[i + dept][j - dept] << " && D:  " << invertedX[i + dept][j + dept] << " Dept = " << dept << endl;
                             if (dept >= 2){
                                 bool sameBase = false;
                                 // the rol how node od triangle disperse [dept=0,disp=0], [1,3],[2,5] ..
                                 // so we calsulate the distance = j+dept - (j-dept) +1
                                 for (int p = 0; p < (2 *dept)+ 1; p++)
                                 {
-                                    // cout << invertedX[i+dept][j-dept] << endl;
                                     if(invertedX[i][j] ==  invertedX[i+dept][j-dept]){
                                         sameBase=true;
                                     }
@@ -157,7 +138,6 @@ int main()
                 ++dept;
             }
         }
-        // cout<<endl;
     }
     cout << A << " " << B << endl;
     return EXIT_SUCCESS;
