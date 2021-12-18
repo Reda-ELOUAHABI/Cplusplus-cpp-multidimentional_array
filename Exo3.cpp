@@ -6,9 +6,9 @@
 
 using namespace std;
 
-int * find_patterns(int two_D_array[5][17], int one_D_array[5] ){
+int find_patterns(int two_D_array[5][17], int one_D_array[5] , int& MaxSumOfRowCorrectPattern ){
     //[countPatterns,MaxSum]
-    int MaxSumOfRowCorrectPattern=-1;
+    // int MaxSumOfRowCorrectPattern=-1;
     int countPatterns =0;
     // print section
     int index1D =0;
@@ -25,10 +25,6 @@ int * find_patterns(int two_D_array[5][17], int one_D_array[5] ){
     // }
     // cout << endl;
     
-// Test Brutal
-cout << two_D_array[4][0] %2  ;
-cout << two_D_array[2][1] %2  ;
-
 
  for(int i=0;i<5;i++){
      for(int j=0;j<17;j++)
@@ -85,8 +81,9 @@ cout << two_D_array[2][1] %2  ;
 //       cout << array_return[i] << endl;
 //    }
 //    cout << "Function Finished ... \n";
-    static int array_return[2]={countPatterns,MaxSumOfRowCorrectPattern};
-    return array_return;
+    // static int array_return[2]={countPatterns,MaxSumOfRowCorrectPattern};
+    // return array_return;
+    return countPatterns;
 }
 int main()
 {
@@ -137,9 +134,13 @@ int main()
             // cin >> set_of_rules[i];
         cout<<endl;
     }
-    int *a = find_patterns(x,set_of_rules);
+    int MaxSumOfRowCorrectPattern{ -1 };
+    int countPatterns = find_patterns(x,set_of_rules,MaxSumOfRowCorrectPattern);
+    cout << countPatterns<<endl;
+    cout << MaxSumOfRowCorrectPattern<<endl;
+    // int *a = find_patterns(x,set_of_rules,MaxSumOfRowCorrectPattern);
     for(int i=0; i<2; i++){
-        cout << *(a + i) << endl; // you can also directly by: a[1] a[0]
+        // cout << *(a + i) << endl; // you can also directly by: a[1] a[0]
     }
 	return EXIT_SUCCESS;
 }
