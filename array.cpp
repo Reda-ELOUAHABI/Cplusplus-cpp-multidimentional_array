@@ -1,5 +1,5 @@
-// reda@ELOUAHABI:/mnt/c/Users/Reda El Ouahabi/Desktop/mvn_proj/cplus$ g++ array.cpp -o array
-// reda@ELOUAHABI:/mnt/c/Users/Reda El Ouahabi/Desktop/mvn_proj/cplus$ ./array
+// mvn_proj/cplus$ g++ array.cpp -o array
+// mvn_proj/cplus$ ./array
 
 #include <iostream>
 
@@ -81,7 +81,7 @@ void Tests()
         {0, 0, 0, 0, 13, 17, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0},
         {0, 0, 0, 17, 17, 17, 17, 17, 17, 17, 17, 17, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
     };
     // Custom Print
@@ -156,25 +156,45 @@ void SecondExo()
 {
     cout << "Second Exo\n";
     // they want 10 rows 15 colums
-    int rows = 10, columns = 5;
+    int rows = 10, columns = 15;
+    int x[rows][columns] = {
+        {1,2,3,4,5,    1,2,3,4,5,     1,2,3,4,5},
+        {6,7,8,9,10,    1,2,3,4,5,     1,2,3,4,5},
+        {11,12,13,14,15,    1,2,3,4,5,     1,2,3,4,5},
+        {16,13,18,13,20,    1,2,3,4,5,     1,2,3,4,5},
+        {13,13,13,13,13,    1,2,3,4,5,     1,2,3,4,5},
+        {1,2,3,4,5,    1,2,3,4,5,     1,2,3,4,5},
+        {18,18,18,18,18,     1,2,3,4,5,     1,2,3,4,5},
+        {11,18,13,18,15,    1,2,3,4,5,     1,2,3,4,5},
+        {16,13,18,13,20,    1,2,3,4,5,     1,2,3,4,5},
+        {13,13,13,13,13,    1,2,3,4,5,     1,2,3,4,5}
+    };
+    /*
+        int rows = 10, columns = 5;
     int x[rows][columns] = {
         {1,2,3,4,5},
         {6,7,8,9,10},
         {11,12,13,14,15},
         {16,13,18,13,20},
         {13,13,13,13,13},
-        {1,2,3,4,5},
-        {18,18,18,18,18},
-        {11,18,13,18,15},
+            {1,2,3,4,5},
+        {6,7,8,9,10},
+        {11,12,13,14,15},
         {16,13,18,13,20},
         {13,13,13,13,13}
     };
+    */
     int invertedX[rows][columns] ={};
      // Fill In invertesX and print X
     for(int i=0;i<rows;i++)
     {
         for(int j=0;j<columns;j++)
         {
+            //  dynamic approach
+            /*
+            cout << "Element at x[" << i << "][" << j << "]: ";
+            cin >> x[i][j];
+            */
             cout << "X[" << i << "][" << j << "]="<<x[i][j]<<"\t";
             invertedX[rows-i-1][j]=x[i][j];
         }
@@ -284,7 +304,7 @@ void SecondExo()
 
 int main()
 {
-    FirstExo();
+    // FirstExo();
     cout << "\n\n";
     SecondExo();
     return 0;

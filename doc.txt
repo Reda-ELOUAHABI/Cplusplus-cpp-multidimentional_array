@@ -1,0 +1,37 @@
+
+-- si des non-conformités ou des vulnérabilités sont identifiées (par
+surveillance ou un autre processus informatique opérationnel tel que
+gestion des changements, des problèmes ou des incidents, par exemple)
+qui ne peut être résolu du tout ou dans un délai raisonnable
+cadre pendant les opérations normales, ils doivent être évalués comme
+partie du processus de gestion des risques et traité par le
+propriétaire du risque.
+Les analyses et évaluations des risques 
+-- nécessitent toujours l'expertise spécialisée du responsable du processus respectif. le
+les responsables SI de l'organisation peuvent apporter un soutien au processus et peuvent identifier et évaluer les risques lors d'entretiens ou
+des ateliers par exemple. Une autre approche consiste à
+utilisation d'enquêtes/auto-évaluations. Selon la méthode
+sélectionnées, ces auto-évaluations peuvent également faire l'objet d'un examen supplémentaire par une deuxième paire d'yeux. L'important
+la chose ici est qu'un processus formel et pragmatique est en place
+qui apporte un soutien optimal aux services et
+chefs de projet et veille simultanément à ce que les risques
+sont identifiés à un stade précoce et traités de manière appropriée.
+
+-- BSI Standard 100-3 - Analyse des risques basée sur la base informatique
+La protection fournit quelques points de départ pour l'utilisation
+les menaces répertoriées dans les catalogues de protection informatique de base
+pour effectuer une analyse de risque pour le traitement des données. Pourtant,
+l'approche BSI exige que les étapes du référentiel informatique
+méthode de protection doit être effectuée en premier (y compris le réseau d'information, l'analyse structurelle, la détermination de la protection
+exigences, modélisation, contrôle de sécurité de base, analyse de sécurité supplémentaire) avant qu'une décision puisse être prise concernant les objets cibles pour lesquels une analyse de risque sera
+menées et les objets pour lesquels il n'est pas nécessaire.
+
+-- dans le cadre d'un SMSI, la marchandise à protéger
+est toujours l'information elle-même. C'est le travail de l'autorité responsable dans chaque cas (direction de l'entreprise,
+cadres, propriétaires de processus) pour évaluer ce produit dans
+termes de sa valeur pour l'entreprise/le processus respectif.
+De cette manière, la marchandise informationnelle devient un actif informationnel. Le travail du propriétaire du risque consiste à établir
+des TOM appropriés, efficaces et efficients à toutes les étapes de
+le processus. Les gestionnaires du SMSI sont des « chiens de garde » pour le
+la mise en œuvre de la stratégie de sécurité de l'information, et
+entre autres, ils sont responsables de rapports véridiques sur l'exposition aux risques et les incidents de sécurité
