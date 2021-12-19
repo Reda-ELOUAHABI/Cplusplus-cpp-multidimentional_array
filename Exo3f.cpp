@@ -91,7 +91,7 @@ int main()
     // Define the reference parrametter
     int MaxSumOfRowCorrectPattern{ -1 };
     // call find_patterns function
-    int countPatterns = find_patterns(matrix,set_of_rules,MaxSumOfRowCorrectPattern);\
+    int countPatterns = find_patterns(matrix,set_of_rules,MaxSumOfRowCorrectPattern);
     // print the result
     cout << countPatterns <<" "<< MaxSumOfRowCorrectPattern<<endl;
 	return EXIT_SUCCESS;
