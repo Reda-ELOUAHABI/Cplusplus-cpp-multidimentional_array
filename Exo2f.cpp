@@ -66,12 +66,14 @@ int main()
                                 // so we calsulate the distance = j+triangle_size - (j-triangle_size) +1
                                 for (int p = 0; p < (2 *triangle_size)+ 1; p++)
                                 {
-                                    if(matrix[i][j] ==  matrix[i+triangle_size][j-triangle_size]){
-                                        sameBase=true; //we found same base
-                                    }
-                                    else{
-                                        sameBase=false;
-                                    }
+                                    if(i==1 && j==2)
+                                    cout << matrix[i+triangle_size][j-triangle_size] ;
+                                    // if(matrix[i][j] ==  matrix[i+triangle_size][j-triangle_size]){
+                                    //     sameBase=true; //we found same base
+                                    // }
+                                    // else{
+                                    //     sameBase=false;
+                                    // }
                                 }
                                 if (sameBase)//we have a real triangle
                                 {

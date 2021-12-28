@@ -15,19 +15,19 @@ int main()
     int rows = 10, columns = 15;
     int matrix[rows][columns] ;
     
-    // = {
-    //     {0,	0,	0,	0,	3,	0,	0,	0,	0,	0,	0,	13,	0,	0,	0,},
-    //     {9,	9,	9,	9,	9,	0,	0,	0,	0,	0,	13,	0,	13,	0,	0,},
-    //     {0,	9,	0,	9,	0,	13,	13,	13,	13,	13,	13,	13,	13,	13,	0,},
-    //     {9,	0,	9,	0,	9,	0,	13,	0,	0,	0,	0,	0,	13,	0,	1,},
-    //     {0,	9,	0,	9,	0,	0,	17,	13,	0,	0,	0,	13,	0,	0,	1,},
-    //     {9,	9,	9,	9,	9,	17,	0,	17,	13,	0,	13,	0,	0,	0,	2,},
-    //     {0,	0,	0,	0,	17,	3,	0,	0,	17,	13,	0,	0,	5,	0,	1,},
-    //     {2,	0,	0,	17,	0,	0,	0,	0,	0,	17,	0,	3,	1,	0,	1,},
-    //     {0,	0,	17,	17,	17,	17,	17,	17,	17,	17,	17,	0,	0,	0,	1,},
-    //     {0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	1,}
+    = {
+        {0,	0,	0,	0,	3,	0,	0,	0,	0,	0,	0,	13,	0,	0,	0,},
+        {9,	9,	9,	9,	9,	0,	0,	0,	0,	0,	13,	0,	13,	0,	0,},
+        {0,	9,	0,	9,	0,	13,	13,	13,	13,	13,	13,	13,	13,	13,	0,},
+        {9,	0,	9,	0,	9,	0,	13,	0,	0,	0,	0,	0,	13,	0,	1,},
+        {0,	9,	0,	9,	0,	0,	17,	13,	0,	0,	0,	13,	0,	0,	1,},
+        {9,	9,	9,	9,	9,	17,	0,	17,	13,	0,	13,	0,	0,	0,	2,},
+        {0,	0,	0,	0,	17,	3,	0,	0,	17,	13,	0,	0,	5,	0,	1,},
+        {2,	0,	0,	17,	0,	0,	0,	0,	0,	17,	0,	3,	1,	0,	1,},
+        {0,	0,	17,	17,	17,	17,	17,	17,	17,	17,	17,	0,	0,	0,	1,},
+        {0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	1,}
 
-    // };
+    };
     int invertedMatrix[rows][columns] ={};
 
     // Scan user input for 2d array [Matrix]
@@ -36,7 +36,7 @@ int main()
         for(int j=0;j<columns;j++)
         {
         //    cout << i << " * " << j << " = ";
-            cin >> matrix[i][j];
+            // cin >> matrix[i][j];
         }
         //! cout<<endl;
     }
@@ -60,54 +60,31 @@ int main()
     {
         for(int j=0;j<columns;j++)
         {
-            // for first Extremety elements
-            if(i+2<rows && j-2>=0 && j+2<15){
+            // for first Extremety elements for minimum triangle size == 3 [strict because we never get exactly to elmt]
+            if(i+2<rows && j-2>=0 && j+2<columns){
             //normal matrix for current i and j
             int triangle_size=1;//initialise the triangle size
-            bool hasNext =false;//suppose that we don't have a next
-            while(triangle_size<rows){
-                // we are not at extremities
-                if ((j - triangle_size >= 0 && j + triangle_size <= columns) && i + triangle_size <= rows && matrix[i][j]!=0){
-                    // see if element in diag has the same value
-                    if (matrix[i][j]== matrix[i+triangle_size][j-triangle_size] ||  matrix[i][j] == matrix[i + triangle_size][j + triangle_size] //test on diags
-                    && (matrix[i + triangle_size][j + triangle_size] != 0 && matrix[i + triangle_size][j + triangle_size] !=0)//test nullety
-                    )
+                // next diag is not out of extremities
+                if ((j - triangle_size >= 0 && j + triangle_size < columns) && i + triangle_size < rows){
+                    // see if element in diag has the same value for first dept (&&)
+                    if (matrix[i][j]== matrix[i+triangle_size][j-triangle_size] &&  matrix[i][j] == matrix[i + triangle_size][j + triangle_size])//test on diags
                         {
-                            // test if it is final base
-                            if (matrix[i][j]== matrix[i+triangle_size+1][j-triangle_size-1] ||  matrix[i][j] == matrix[i + triangle_size+1][j + triangle_size+1] 
-                    && (matrix[i + triangle_size+1][j + triangle_size-1] != 0 && matrix[i + triangle_size+1][j + triangle_size+1] !=0)){
-                                hasNext=true;
-                    }
-                            //we passed two level of depth
-                            if (triangle_size >= 2){
-                                bool sameBase = false;//we suppose at first that the diagonal base has not the same values at row
-                                // the role how node of triangle disperse [triangle_size=0,disp=0], [1,3],[2,5] ..
-                                // so we calsulate the distance = j+triangle_size - (j-triangle_size) +1
-                                for (int p = 0; p < (2 *triangle_size)+ 1; p++)
+                            triangle_size++;
+                            // next diag now [size ==2]
+                            if ((j - triangle_size >= 0 && j + triangle_size < columns) && i + triangle_size < rows){
+                                if (matrix[i][j]== matrix[i+triangle_size][j-triangle_size] &&  matrix[i][j] == matrix[i + triangle_size][j + triangle_size] ){
+                                      for (int p = 0; p < (2 *triangle_size)+ 1; p++)
                                 {
-                                    // if(i>4){
-                                    //     cout << "p= " <<p << "[" <<i << j<<"]" << matrix[i+triangle_size][j-triangle_size+p]<< "TSize"<< triangle_size+1<<"\n" ;
-                                    // }
-                                    if(matrix[i][j] ==  matrix[i+triangle_size][j-triangle_size+p] && matrix[i+triangle_size][j-triangle_size+p] !=0 ){
+                                    if(matrix[i][j] ==  matrix[i+triangle_size][j-triangle_size+p]){
                                         sameBase=true; //we found same base
                                     }
                                     else{
-                                    //     if(i>4){
-                                    //     cout << "----------------p= " <<p << "[" <<i << j<<"]" << matrix[i+triangle_size][j-triangle_size+p]<< "TSize"<< triangle_size+1<<"\n" ;
-                                    // }
                                         sameBase=false;
-                                        if(matrix[i+triangle_size][j-triangle_size+p]==0){
-                                            // triangle_size=1;
-                                            // hasNext=false;
-                                        }
-                                        // ++j;
-                                        // passToNext=true;
                                         break;
                                     }
                                 }
                                 if (sameBase)//we have a real triangle
                                 {
-                                    // if(i<=4)
                                     cout << i << " " <<  j <<": " << triangle_size+1 << " standing. Value: " << matrix[i][j] <<endl;
                                     if(B<triangle_size+1){//this is the first triangles that has max triangle_size
                                         B=triangle_size+1;//set the max size
@@ -116,9 +93,52 @@ int main()
                                     else if(B==triangle_size+1){
                                         ++A;//increment counter of triangles that has max triangle_size
                                     }
-                                    break;
+                                }
                                 }
                             }
+                            // for size bigger than 3
+                            bool hasNext =false;//suppose that we don't have a next
+                            // test if it is final base
+                            if (matrix[i][j]== matrix[i+triangle_size+1][j-triangle_size-1] &&  matrix[i][j] == matrix[i + triangle_size+1][j + triangle_size+1]){
+                                hasNext=true;
+                                triangle_size++;
+                            }
+                            if(hasNext){
+                                if((j - triangle_size >= 0 && j + triangle_size < columns) && i + triangle_size < rows){
+                                    if (matrix[i][j]== matrix[i+triangle_size][j-triangle_size] &&  matrix[i][j] == matrix[i + triangle_size][j + triangle_size] ){
+                                      for (int p = 0; p < (2 *triangle_size)+ 1; p++)
+                                {
+                                    if(matrix[i][j] ==  matrix[i+triangle_size][j-triangle_size+p]){
+                                        sameBase=true; //we found same base
+                                    }
+                                    else{
+                                        sameBase=false;
+                                        break;
+                                    }
+                                }
+                                if (sameBase)//we have a real triangle
+                                {
+                                    cout << i << " " <<  j <<": " << triangle_size+1 << " standing. Value: " << matrix[i][j] <<endl;
+                                    if(B<triangle_size+1){//this is the first triangles that has max triangle_size
+                                        B=triangle_size+1;//set the max size
+                                        A=1;
+                                    }
+                                    else if(B==triangle_size+1){
+                                        ++A;//increment counter of triangles that has max triangle_size
+                                    }
+                                }
+                                }
+                                }
+                            }
+
+
+
+
+
+
+
+
+             
                         }
                         else{ break;}
                 }
@@ -127,7 +147,7 @@ int main()
                 ++triangle_size;
                 else{ break;}
 
-            }
+            
 
             //inverted matrix for current i and j
             triangle_size=1;
