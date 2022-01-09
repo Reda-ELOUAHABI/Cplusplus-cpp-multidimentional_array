@@ -27,6 +27,8 @@ void print_reverse(int arr[], int n);
 int issymetric(int arr[], int begin, int end);
 //
 //
+int  is_arithmetic_sequence(int array[], int start, int end, int d);
+int sum_two_limb_is_third(int array[], int start, int end);
 int is_symetricTest(int array[], int start, int end);
 int count_subsets(int array[], int start, int end,int count,int assending, int descending);
 int max_subsets(int array[], int start, int end,int max);
@@ -48,140 +50,149 @@ int main(){
     int arr[n], sorted_arr[n];
     int x, y;
     bool sorted=false;
-    init_array(arr, n);
-    cout<<"-----------------------------------"<<endl;
-    enter_array(arr, n);
-    cout<<"-----------------------------------"<<endl;
-    // 3 - bubble sort
-    copy_array(arr, sorted_arr, n);
-    // I commented this function bcs it gives an error
-    sorted = bubbleSort(sorted_arr, n);
-    cout<<"-----------------------------------"<<endl;
-    // 4 - binary search
-    cout<<"Enter value to search for: "<<endl;
-    cin>>x;
-    if(sorted == true){
-        int result = binarySearch(sorted_arr, 0, n - 1, x);
-        (result == -1)
-            ? cout <<"0"
-            : cout <<"1 "<<endl;
-    }else{
-        cout<<"message: Error \n";
-    }
-    // 5 -
-    cout<<"-----------------------------------"<<endl;
-    // 6 - show array
-    cout<<"sorted array "<<endl;
-    print_array(sorted_arr, n);
-
-    cout<<"-----------------------------------"<<endl;
-    // 7 - print in reverse
-    cout<<"reversed array "<<endl;
-    print_reverse(arr, n);
-
-    cout<<"-----------------------------------"<<endl;
-    // 8 -
-
-    cout<<"-----------------------------------"<<endl;
-
-    // 9 - symmetric
-    // cout<<" if the array is symmetric "<<endl;
-    // y = issymetric(arr, 0, n-1);
-    // cout<<y<<endl;
-	cout <<"array is  symetric ? : \t" <<( is_symetricTest(arr,0,n-1) ? "Yes" : "NO" ) << endl;
-
-    cout<<"-----------------------------------"<<endl;
-    // 10 - consecutive  sub array
-	// int array10[] ={9,8,6,4,1,3,6,6,7,9}; //should give 2
-	// int array10[] ={9,8,6,4,1,3,6,4,5,9} ; //should give 3
-	int count_subsetsint =1; //by default , we will suppose there is already 1 subset with an order DESC or ASC
-	cout <<"array is  constitued by  : "<< count_subsets(arr,0,n-1,count_subsetsint,0,0) << " subsets" <<endl;
-
-    cout<<"-----------------------------------"<<endl;
-    // 11 - max of a given subsets
-
-	int start11, end11;
-	cout << "enter the start position : \n" << endl;
-	cin >> start11;
-	cout << "enter the end position : \n" << endl;
-	cin >> end11;
-	// check validity of user inputs
-	if(start11 < 0 || end11 > n-1 || start11 > end11){
-		start11 = 0 ;
-		end11 = n-1;
-		cout << "USER INPUT WAS INVALID" << endl;
-	}
-	cout <<"Max array is    : "<< max_subsets(arr, start11, end11, arr[start11]) <<endl;
-
-    cout<<"-----------------------------------"<<endl;
-
-    // 12 - initial numbers
-	// 
-	cout <<"initial numbers in array are    : "<< initial_values(arr, 0,n-1) <<endl;
-
-    cout<<"-----------------------------------"<<endl;
-
 
 // 
 // 
 // 
 // 
-
-
-        int userInput;
+// Q 13 ------------ that holds all questions inside it
+    int userInput;
     do {
         cout << "\n\n";
-        cout << "for __1__ entrer : \t 1 \n
-                for __2__ entrer :  \t 2 \n
-                for __3__ entrer :  \t 3 \n
-                for __4__ entrer :  \t 4 \n
-                for __5__ entrer :  \t 5 \n
-                for __6__ entrer :  \t 6 \n
-                for __7__ entrer :  \t 7 \n
-                for __8__ entrer :  \t 8 \n
-                for __9__ entrer :  \t 9 \n
-                for __10__ entrer :  \t 10 \n
-                for __11__ entrer :  \t 11 \n
-                for __12__ entrer :  \t 12 \n
-                for EXIT enter \t 13 " << endl;
+        cout << "for __1__ entrer : \t 1 \n"
+                "for __2__ entrer :  \t 2 \n"
+                "for __3__ entrer :  \t 3 \n"
+                "for __4__ entrer :  \t 4 \n"
+                "for __5__ entrer :  \t 5 \n"
+                "for __6__ entrer :  \t 6 \n"
+                "for __7__ entrer :  \t 7 \n"
+                "for __8__ entrer :  \t 8 \n"
+                "for __9__ entrer :  \t 9 \n"
+                "for __10__ entrer :  \t 10 \n"
+                "for __11__ entrer :  \t 11 \n"
+                "for __12__ entrer :  \t 12 \n"
+                "for EXIT enter \t 13 " << endl;
         cin >> userInput;
         cout << "\n\n";
         if(userInput==1){
         //    1;
+        // 1. Entering values for the array (the user will enter ten data).
+            init_array(arr, n);
+            cout<<"-----------------------------------"<<endl;
+            enter_array(arr, n);
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 2){
             // 2;
+            // 2. Schematic of all members of the array and presentation of the result.
+            print_array(arr, n);
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 3){
             // 3;
+            // 3 - bubble sort
+            // 3. Sort the array using the bubble sorting algorithm. 
+            copy_array(arr, sorted_arr, n);
+            sorted = bubbleSort(sorted_arr, n);
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 4){
             // 4;
+            // 4 - binary search
+            // 4. Binary search of a desired value in an array. The user will enter the value,
+            //  the output will be 1 if the value is in the array, and 0 if not.
+            cout<<"Enter value to search for: "<<endl;
+            cin>>x;
+            if(sorted == true){
+                int result = binarySearch(sorted_arr, 0, n - 1, x);
+                (result == -1)
+                    ? cout <<"0"
+                    : cout <<"1 "<<endl;
+            }else{
+                cout<<"message: Error \n";
+            }
         }
         else if (userInput == 5){
             // 5;
+            // 5 -
+            // Checking whether the array members constitute an invoice series. 
+            // == (Arithmetic sequence ==arithmetic progression)
+            // The output will be 1 if yes, and 0 if not.
+            // int array5[] ={1,2,3,4,5,6,7,8,9,10} ;
+            int difference=arr[0]-arr[1];
+            cout <<"is arithmetic sequence ? : \t" << is_arithmetic_sequence(arr,1,n-1,difference)  << endl;
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 6){
             // 6;
+            // 6 - show array
+            // Displays the contents of the array (from beginning to end).
+            cout<<"sorted array "<<endl;
+            print_array(sorted_arr, n);
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 7){
             // 7;
+            // 7 - print in reverse
+            // 7. Displays the contents of the array from end to beginning 
+            cout<<"reversed array "<<endl;
+            print_reverse(arr, n);
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 8){
             // 8;
+            // 8 -
+            // Examine whether each of the arrays (starting from the third limb(==member)) is the sum of the two limbs that precede it.
+            //  The output will be 1 if yes, and 0 if not.
+            // int array8[] ={1,1,2,3,5,8,13,2,34,55} ; 4Tests
+            cout <<"third limb is sum of two preceding limbs? : \t" << sum_two_limb_is_third(arr,2,n-1)  << endl;
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 9){
             // 9;
+            // 9 - symmetric/plinth array
+            // cout<<" if the array is symmetric "<<endl;
+            // y = issymetric(arr, 0, n-1);
+            // cout<<y<<endl;
+            // int array9[] = { 1, 2, 3,4,5,5,4,3, 2, 1};
+            cout <<"array is  symetric ? : \t" << is_symetricTest(arr,0,n-1) << endl;
+            // cout <<"array is  symetric ? : \t" <<( is_symetricTest(arr,0,n-1) ? "Yes" : "NO" ) << endl;
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 10){
             // 10;
+            // 10 - consecutive  sub array
+            // int array10[] ={9,8,6,4,1,3,6,6,7,9}; //should give 2
+            // int array10[] ={9,8,6,4,1,3,6,4,5,9} ; //should give 3
+            int count_subsetsint =1; //by default , we will suppose there is already 1 subset with an order DESC or ASC
+            cout <<"array is  constitued by  : "<< count_subsets(arr,0,n-1,count_subsetsint,0,0) << " subsets" <<endl;
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 11){
             // 11;
+            // 11 - max of a given subsets
+            int start11, end11;
+            cout << "enter the start position : \n" << endl;
+            cin >> start11;
+            cout << "enter the end position : \n" << endl;
+            cin >> end11;
+            // check validity of user inputs
+            if(start11 < 0 || end11 > n-1 || start11 > end11){
+                start11 = 0 ;
+                end11 = n-1;
+                cout << "USER INPUT IS INVALID" << endl;
+            }
+            cout <<"Max array is    : "<< max_subsets(arr, start11, end11, arr[start11]) <<endl;
+            cout<<"-----------------------------------"<<endl;
         }
         else if (userInput == 12){
             // 12
+            // 12 - initial numbers
+            cout <<"initial numbers in array are    : "<< initial_values(arr, 0,n-1) <<endl;
+            cout<<"-----------------------------------"<<endl;
         }
+        else
+            cout<<"Re-Enter a valid value \n -----------------------------------"<<endl;
 }
 while (userInput != 13);
  cout << "EXIT ...\n";
@@ -225,6 +236,7 @@ void init_array(int arr[], int n){
         cout<<endl;
         return EXIT_SUCCESS;
     }
+    // init all on ZERO
     arr[i] = 0;
     i++;
     init_array(arr, n);
@@ -237,7 +249,7 @@ void print_array(int arr[], int n){
         cout<<endl;
         return EXIT_SUCCESS;
     }
-    cout<<arr[i]<<" ";
+    cout<<"(" <<i<<")"<<arr[i]<<" ";
     i++;
     print_array(arr, n);
 
@@ -301,6 +313,32 @@ int issymetric(int arr[], int begin, int end){
 
 // 
 // 
+
+
+int  is_arithmetic_sequence(int array[], int start, int end, int d){ //should start with start==1 , to have a previous elt
+    // cout << "start" << start << " : "<<array[start] <<" &&  previous "<< start-1 << " : " <<array[start-1] <<" &&  difference ="<< d <<endl;
+	if(start > end) return 1; //we are at the end
+	else if(array[start-1] - array[start] == d ){//the condition is true
+    // cout << "start" << start << " : "<<array[start] <<" &&  previous "<< start-1 << " : " <<array[start-1] <<" &&  previous_of_previous "<< start-2 << " : " <<array[start-2]<<endl;
+    // cout <<"\n"<< array[start] <<"="<< array[start-1] + array[start-2] <<"\n";
+			return  is_arithmetic_sequence(array,start+1,end,d);
+    }
+    //otherwise , we dont have exact difference d :
+	return 0;
+}
+int sum_two_limb_is_third(int array[], int start, int end) //start == start from index 2 , not 0
+{
+	// cout << "start" << start << " : "<<array[start] <<" &&  previous "<< start-1 << " : " <<array[start-1] <<" &&  previous_of_previous "<< start-2 << " : " <<array[start-2]<<endl;
+	if(start > end) return 1; //we are at the end
+	else if(array[start] == array[start-1] + array[start-2] ){//the condition is true
+    // cout << "start" << start << " : "<<array[start] <<" &&  previous "<< start-1 << " : " <<array[start-1] <<" &&  previous_of_previous "<< start-2 << " : " <<array[start-2]<<endl;
+    // cout <<"\n"<< array[start] <<"="<< array[start-1] + array[start-2] <<"\n";
+			return  sum_two_limb_is_third(array,start+1,end);
+    }
+    //otherwise , limbs do not verify the condition
+	return 0;
+}
+
 int is_symetricTest(int array[], int start, int end)
 {
 	// cout << "start" << start << " : "<<array[start] <<" &&  end"<< end << " : " <<array[end]<<endl;
