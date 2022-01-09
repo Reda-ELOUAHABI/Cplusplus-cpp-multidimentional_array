@@ -1,0 +1,35 @@
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+
+//---------------- using -------------------------
+using std::cin;
+using std::cout;
+using std::endl;
+using std::setw;
+
+//---------------- consts ------------------------
+
+//---------------- prototypes ----------------------
+
+int power(int base, int n);
+//---------------- main ----------------------
+
+int main()
+{
+	int base, n;
+	cin >> base >> n;
+
+	cout << power(base, n);
+}
+
+int power(int base, int n)
+{
+	int res;
+	if (n == 0)
+		return 1;
+
+	res = power(base, n - 1);
+	return base*res;
+}

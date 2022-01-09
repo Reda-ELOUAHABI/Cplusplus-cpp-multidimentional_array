@@ -1,0 +1,76 @@
+#include <iostream>
+
+
+using std::cout;
+using std::endl;
+
+//-------------- consts---------------------------
+const int N = 10;
+
+//---------------proto-types----------------------
+void quicksort(int arr[], int from, int to);
+int place_pivot(int arr[], int from, int to);
+void print_array(const int arr[]);
+void swap(int arr[], int n1, int n2);
+
+//----------------main---------------------------
+
+int main() {
+	int arr[N] = { 8, 3, 5, 4, 9, 2, 1, 7, 6, 11};
+
+	quicksort(arr, 0, N - 1);
+	print_array(arr);
+
+	return EXIT_SUCCESS;
+}
+////////////////////////////////////////////////////
+
+void quicksort(int arr[], int from, int to)
+{
+	int pivot = place_pivot(arr, from, to);
+
+	if (from < pivot - 1)
+		quicksort(arr, from, pivot - 1);
+
+	if (to > pivot + 1)
+		quicksort(arr, pivot + 1, to);
+}
+
+////////////////////////////////////////////////////
+
+int place_pivot(int arr[], int from, int to)
+{
+	int pivot = from;
+
+	for (int place = from + 1; place <= to; place++)
+	{
+		if (arr[place] < arr[pivot])
+		{
+			swap(arr, pivot+1, place);
+			swap(arr, pivot, pivot + 1);
+			pivot++;
+		}
+	}
+
+	return pivot;
+}
+////////////////////////////////////////////////////
+void swap(int arr[], int n1, int n2)
+{
+	int temp;
+
+	if (n1 != n2)
+	{
+		int temp = arr[n1];
+		arr[n1] = arr[n2];
+		arr[n2] = temp;
+	}
+}
+
+//------------------------------------------------
+void print_array(const int arr[])
+{
+	for (int i = 0; i < N; i++)
+		cout << arr[i] << " ";
+	cout << std::endl;
+}

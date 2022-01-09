@@ -1,0 +1,35 @@
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+
+//---------------- using -------------------------
+using std::cin;
+using std::cout;
+using std::endl;
+using std::setw;
+//---------------- consts ------------------------
+
+const int N = 5;
+//---------------- prototypes --------------------
+
+int find_max( const int arr[], int index);
+
+//---------------- main ----------------------
+
+int main()
+{
+	int arr[] = { 3, 6, 12, 10, 4};
+
+	cout << find_max( arr, 0) << endl;
+}
+
+int find_max(const int arr[], int index)
+{
+	int max;
+	if (index == N-1)
+		return arr[index];
+
+	max = find_max( arr, index+1);
+	return (arr[index] > max ? arr[index] : max);
+}

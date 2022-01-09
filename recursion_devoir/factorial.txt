@@ -1,0 +1,39 @@
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+
+//---------------- using -------------------------
+using std::cin;
+using std::cout;
+using std::endl;
+using std::setw;
+
+//---------------- consts ------------------------
+
+//---------------- prototypes ----------------------
+
+int factorial(int n);
+
+//---------------- main ----------------------
+
+// calculate n!
+int main()
+{
+	int n;
+
+	cin >> n;
+	cout << factorial(n) << endl;
+}
+
+//////////////////////////////////
+
+int factorial(int n)
+{
+	int res_n_1;
+	if (n == 0)
+		return 1;
+
+	res_n_1 = factorial(n - 1);
+	return res_n_1 * n;
+}

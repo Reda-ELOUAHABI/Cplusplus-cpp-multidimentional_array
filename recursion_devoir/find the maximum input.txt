@@ -1,0 +1,34 @@
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+
+//---------------- using -------------------------
+using std::cin;
+using std::cout;
+using std::endl;
+using std::setw;
+//---------------- consts ------------------------
+const int END_OF_DATA = 0;
+
+//---------------- prototypes --------------------
+unsigned int find_max();
+// find the maximal number of input by recursion
+
+int main()
+{
+	cout << find_max() << endl;
+
+	return EXIT_SUCCESS;
+}
+
+unsigned int find_max()
+{
+	unsigned int num, max;
+	cin >> num;
+	if (num == END_OF_DATA)
+		return END_OF_DATA;
+
+	max = find_max();
+	return (max > num ? max : num);
+}

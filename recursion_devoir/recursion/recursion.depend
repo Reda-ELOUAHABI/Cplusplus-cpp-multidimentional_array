@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1641580220 source:c:\users\haydra\desktop\recursion\main.cpp
+	<iostream>
+	<cstdlib>
+

@@ -1,0 +1,30 @@
+#include <iostream>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+//------prototypes-----------------
+
+void hanoi(int num, char from, char to, char aux);
+//------main ----------------------
+int main()
+{
+	int num_of_rings;
+
+	cin >> num_of_rings;
+	hanoi(num_of_rings, 'a', 'b', 'c');
+	return EXIT_SUCCESS;
+}
+
+void hanoi(int num, char from, char to, char aux)
+{
+	if (num == 1)
+		cout << "ring no. 1: " << from << " -> " << to << endl;
+	else
+	{
+		hanoi(num - 1, from, aux, to);
+		cout << "ring no. " << num << ": " << from << " -> " << to << endl;
+		hanoi(num - 1, aux, to, from);
+	}
+}
