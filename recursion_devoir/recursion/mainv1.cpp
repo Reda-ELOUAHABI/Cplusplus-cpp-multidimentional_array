@@ -14,14 +14,13 @@ using std::endl;
 using std::setw;
 using std::exit;
 using std::abs;
-#define EXIT_SUCCESS
 
 
 //---------------- prototypes ----------------------
 void enter_array(int arr[], int n);
 void init_array(int arr[], int n);
 void print_array(int arr[], int n);
-int binarySearch(int arr[], int l, int r, int x);
+int binarySearch(int arr[], int l, int r, int searched_value);
 void print_reverse(int arr[], int n);
 int issymetric(int arr[], int begin, int end);
 void presente_array(int arr[], int n);
@@ -36,81 +35,100 @@ int initial_values(int array[], int start, int end);
 
 
 //---------------- main ----------------------
-
-int main(){
     int n=10;
-    int arr[n];
-    // int sorted_arr[n];
-    int x;
+    int arr[10];
+    int searched_value;
     bool sorted=false;
 
     int userInput;
-    
-    do {
-        cin >> userInput;
-        if(userInput==1){
+
+int main(){
+    cin >> userInput;
+        switch(userInput) {
+    case 1  :
+    {
         // 1. Entering values for the array (the user will enter ten data).
-            init_array(arr, n);
-            enter_array(arr, n);
-        }
-        else if (userInput == 2){
+        init_array(arr, n);
+        enter_array(arr, n);
+        main();
+    }
+    case 2  :
+    {
             // 2. Schematic of all members of the array and presentation of the result.
             presente_array(arr, n);
 			cout << endl;
-        }
-        else if (userInput == 3){
+            main();
+    }
+    case 3  :
+    {
             // 3. Sort the array using the bubble sorting algorithm. 
             if(bubbleSort(arr,0, n)==1){
                     sorted = true;
             }
-        }
-        else if (userInput == 4){
+            main();
+    }
+    case 4  :
+    {
             // 4. Binary search of a desired value in an array. The user will enter the value,
             //  the output will be 1 if the value is in the array, and 0 if not.
             if(sorted == true){
-				 cin>>x;
-                int result = binarySearch(arr, 0, n - 1, x);
+				 cin>>searched_value;
+                int result = binarySearch(arr, 0, n - 1, searched_value);
                 (result == 0)
                     ? cout <<"0"<<endl
                     : cout <<"1"<<endl;
             }else{
                 cout<<"Error \n";
             }
-        }
-        else if (userInput == 5){
-            // Checking whether the array members constitute an invoice series. 
+            main();
+    }
+    case 5  :
+    {
+         // Checking whether the array members constitute an invoice series. 
             // == (Arithmetic sequence ==arithmetic progression)
             // The output will be 1 if yes, and 0 if not.
             // int array5[] ={1,2,3,4,5,6,7,8,9,10} ;
             int difference=arr[0]-arr[1];
             cout <<is_arithmetic_sequence(arr,1,n-1,difference)  << endl;
-        }
-        else if (userInput == 6){
-            // Displays the contents of the array (from beginning to end).
+            main();
+    }
+    case 6  :
+    {
+        // Displays the contents of the array (from beginning to end).
             print_array(arr, n);
             cout<<endl;
-        }
-        else if (userInput == 7){
-            // 7. Displays the contents of the array from end to beginning 
+            main();
+    }
+    case 7  :
+    {
+        // 7. Displays the contents of the array from end to beginning 
             print_reverse(arr, n);
-        }
-        else if (userInput == 8){
-            // Examine whether each of the arrays (starting from the third limb(==member)) is the sum of the two limbs that precede it.
+            main();
+    }
+    case 8  :
+    {
+        // Examine whether each of the arrays (starting from the third limb(==member)) is the sum of the two limbs that precede it.
             //  The output will be 1 if yes, and 0 if not.
             // int array8[] ={1,1,2,3,5,8,13,2,34,55} ; 4Tests
             cout << sum_two_limb_is_third(arr,2,n-1) << endl;
-        }
-        else if (userInput == 9){
-            // 9 - symmetric/plinth array
+            main();
+    }
+    case 9  :
+    {
+        // 9 - symmetric/plinth array
             cout << is_symetricTest(arr,0,n-1) << endl;
-        }
-        else if (userInput == 10){
-            // 10 - consecutive  sub array
+            main();
+    }
+    case 10  :
+    {
+        // 10 - consecutive  sub array
             int count_subsetsint = 1; //by default , we will suppose there is already 1 subset with an order DESC or ASC
             cout << count_subsets(arr,0,n-1,count_subsetsint,0,0) <<endl;
-        }
-        else if (userInput == 11){
-            // 11 - max of a given subsets
+            main();
+    }
+    case 11  :
+    {
+        // 11 - max of a given subsets
             int start11, end11;
             cin >> start11;
             cin >> end11;
@@ -120,14 +138,23 @@ int main(){
                 end11 = n-1;
             }
             cout << max_subsets(arr, start11, end11, arr[start11]) <<endl;
-        }
-        else if (userInput == 12){
-            // 12 - initial numbers
-            cout <<(initial_values(arr, 0,n-1) ? " " : " ") <<" " ;
-            cout << endl;
-        }
-}
-while (userInput != 13);
+            main();
+    }
+    case 12  :
+    {
+        // 12 - initial numbers
+        cout <<(initial_values(arr, 0,n-1) ? " " : " ") <<" " ;
+        cout << endl;
+        main();
+    }
+    case 13  :
+    {
+        exit(0);
+    }
+    // you can have any number of case statements.
+    default :
+        main();
+    }
     return 0;
 }
 
@@ -135,13 +162,13 @@ while (userInput != 13);
 
 void enter_array(int arr[], int n){
     static int i;
-    int x;
+    int input;
     if(i==n){
         i = 0;
-        return EXIT_SUCCESS;;
+        return;
     }
-    cin>>x;
-    arr[i] = x;
+    cin>>input;
+    arr[i] = input;
     i++;
     enter_array(arr, n);
 
@@ -152,7 +179,7 @@ void init_array(int arr[], int n){
     static int i;
     if(i==n){
         i = 0;
-        return EXIT_SUCCESS;
+        return;
     }
     arr[i] = 0;
     i++;
@@ -163,7 +190,7 @@ void presente_array(int arr[], int n){
     static int i;
     if(i==n){
         i = 0;
-        return EXIT_SUCCESS;
+        return;
     }
     cout<<"arr[" <<i<<"] "<<arr[i]<<" ";
     i++;
@@ -174,7 +201,7 @@ void print_array(int arr[], int n){
     static int i;
     if(i==n){
         i = 0;
-        return EXIT_SUCCESS;
+        return;
     }
     cout<< arr[i]<<" ";
     i++;
@@ -186,7 +213,7 @@ void print_reverse(int arr[], int n){
     static int i=n-1;
     if(i==0){
         cout<<arr[i]<<" "<<endl;
-        return EXIT_SUCCESS;
+        return;
     }
     cout<<arr[i]<<" ";
     i--;
@@ -205,16 +232,17 @@ int bubbleSort(int arr[], int start, int end){
     }
     else
         return 1;
+    return 0;
 }
 
-int binarySearch(int arr[], int l, int r, int x){
+int binarySearch(int arr[], int l, int r, int searched_value){
     if (r >= l) {
         int mid = l + (r - l) / 2;
-        if (arr[mid] == x)
+        if (arr[mid] == searched_value)
             return mid;
-        if (arr[mid] > x)
-            return binarySearch(arr, l, mid - 1, x);
-        return binarySearch(arr, mid + 1, r, x);
+        if (arr[mid] > searched_value)
+            return binarySearch(arr, l, mid - 1, searched_value);
+        return binarySearch(arr, mid + 1, r, searched_value);
     }
 
     return 0;
