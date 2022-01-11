@@ -19,9 +19,9 @@ using std::abs;
 //---------------- prototypes ----------------------
 void enter_array(int arr[], int n);
 void init_array(int arr[], int n);
-void print_array(int arr[], int n);
+void print_array1(int arr[], int start, int end);
 int binarySearch(int arr[], int l, int r, int searched_value);
-void print_reverse(int arr[], int n);
+void print_reverse1(int arr[], int start, int end);
 int issymetric(int arr[], int begin, int end);
 void presente_array(int arr[], int n);
 int bubbleSort(int arr[], int begin, int end);
@@ -55,6 +55,7 @@ int main(){
     case 2  :
     {
             // 2. Schematic of all members of the array and presentation of the result.
+            // -2 -33 12 88 12 -2 -1 1 9 1
             presente_array(arr, n);
 			cout << endl;
             main();
@@ -64,7 +65,11 @@ int main(){
             // 3. Sort the array using the bubble sorting algorithm. 
             if(bubbleSort(arr,0, n)==1){
                     sorted = true;
+                    // cout << "sorted";
             }
+            // else{
+            //     cout << "Not sorted";
+            // }
             main();
     }
     case 4  :
@@ -72,7 +77,7 @@ int main(){
             // 4. Binary search of a desired value in an array. The user will enter the value,
             //  the output will be 1 if the value is in the array, and 0 if not.
             if(sorted == true){
-				 cin>>searched_value;
+                cin>>searched_value;
                 int result = binarySearch(arr, 0, n - 1, searched_value);
                 (result == 0)
                     ? cout <<"0"<<endl
@@ -95,14 +100,15 @@ int main(){
     case 6  :
     {
         // Displays the contents of the array (from beginning to end).
-            print_array(arr, n);
+            print_array1(arr, 0,n-1);
             cout<<endl;
             main();
     }
     case 7  :
     {
         // 7. Displays the contents of the array from end to beginning 
-            print_reverse(arr, n);
+            print_reverse1(arr, 0,n-1);
+            cout<<endl;
             main();
     }
     case 8  :
@@ -151,7 +157,7 @@ int main(){
     {
         exit(0);
     }
-    // you can have any number of case statements.
+// executed every switch automaticly (by default)
     default :
         main();
     }
@@ -195,34 +201,28 @@ void presente_array(int arr[], int n){
     cout<<"arr[" <<i<<"] "<<arr[i]<<" ";
     i++;
     presente_array(arr, n);
-
-}
-void print_array(int arr[], int n){
-    static int i;
-    if(i==n){
-        i = 0;
-        return;
-    }
-    cout<< arr[i]<<" ";
-    i++;
-    print_array(arr, n);
-
 }
 
-void print_reverse(int arr[], int n){
-    static int i=n-1;
-    if(i==0){
-        cout<<arr[i]<<" "<<endl;
-        return;
+void print_array1(int arr[], int start, int end){
+    if(start<=end){
+        cout<<arr[start]<<" ";
+        print_array1(arr, start+1,end);
     }
-    cout<<arr[i]<<" ";
-    i--;
-    print_reverse(arr, n-1);
+    
+}
+
+
+void print_reverse1(int arr[], int start, int end){
+    // cout<<endl<< "start =" << start << " end= "<< end<<endl;
+    if(start<=end){
+        cout<<arr[end]<<" ";
+        print_reverse1(arr, start,end-1);
+    }
+    
 }
 int bubbleSort(int arr[], int start, int end){
-
     if(start < end && end > 0){
-        if(arr[start] > arr[start+1]){
+        if(arr[start] > arr[start+1] && arr[start] !=0 && arr[start+1] !=0){
             int temp = arr[start];
             arr[start] = arr[start+1];
             arr[start+1] = temp;
@@ -232,7 +232,7 @@ int bubbleSort(int arr[], int start, int end){
     }
     else
         return 1;
-    return 0;
+    return 1;
 }
 
 int binarySearch(int arr[], int l, int r, int searched_value){
